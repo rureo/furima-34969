@@ -24,8 +24,9 @@
 /config/master.key
 
 /public/packs
-/public/packs-test
+/public/packs-testDraw.io Integration
 /node_modules
 /yarn-error.log
 yarn-debug.log*
 .yarn-integrity
+.Ds_Store
