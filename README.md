@@ -58,8 +58,6 @@
 
 
 
-
-
 ## ropsテーブル
 
 | Column | Type        | Options                        |
