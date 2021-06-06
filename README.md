@@ -36,7 +36,7 @@
 
 ### Association
 
-- has_many :rop
+- has_one :rop
 - belongs_to :user
 
 
