@@ -31,7 +31,7 @@
 | status_id                   | integer     | null: false                    |
 | who_pay_shipping_charge_id  | integer     | null: false                    |
 | ship_where_from_id          | integer     | null: false                    |
-| days_id                     | integer     | null: false                    |
+| delivery_day_id             | integer     | null: false                    |
 | price                       | integer     | null: false                    |
 | user                        | references  | null: false, foreign_key: true |
 
@@ -72,3 +72,4 @@
 
 - has_one :shippment
 - belongs_to :item
+- belongs_to :users
