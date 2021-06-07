@@ -72,4 +72,4 @@
 
 - has_one :shippment
 - belongs_to :item
-- belongs_to :users
+- belongs_to :user
