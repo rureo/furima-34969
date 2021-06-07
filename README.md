@@ -7,7 +7,8 @@
 | nickname                | string    | null: false              |
 | email                   | string    | null: false,unique: true |
 | encrypted_password      | string    | null: false              |
-| name                    | string    | null: false              |
+| name_last               | string    | null: false              |
+| name_first              | string    | null: false              |
 | name_reading_last       | string    | null: false              | 
 | name_reading_first      | string    | null: false              |
 | birthday                | date      | null: false              |
@@ -59,6 +60,7 @@
 
 
 
+
 ## ropsテーブル
 
 | Column | Type        | Options                        |
@@ -69,3 +71,4 @@
 ### Association
 
 - has_one :shippment
+- belongs_to :item
