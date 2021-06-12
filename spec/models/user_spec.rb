@@ -47,10 +47,24 @@ RSpec.describe User, type: :model do
       end
 
       it 'passwordは英数字混合でないと登録できない' do
+        @user.password = 'aceftt'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
+      end
+
+      it 'passwordは英数字混合でないと登録できない' do
+        @user.password = '234577'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
+      end
+
+
+      it 'passwordは英数字混合でないと登録できない' do
         @user.password = 'も７６７７７'
         @user.valid?
         expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
       end
+
 
       it 'nicknameが空だと登録できない' do
         @user.nickname = ''
