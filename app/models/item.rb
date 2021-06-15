@@ -18,14 +18,15 @@ with_options presence: true do
 
   end
 
-  with_options  umericality: { other_than: 1 } 　do
+  with_options  numericality:{ other_than: 1 } do
     validates :category_id
-    validates :statusid
+    validates :status_id
     validates :who_pay_shipping_charge_id
     validates :ship_where_from_id
     validates :delivery_day_id
 
   end
+
 
 
 
