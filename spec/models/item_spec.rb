@@ -65,6 +65,42 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Price can't be blank")
       end
 
+      it '商品価格が299円以下では出品できない' do
+        @item.price = 277
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price must be greater than or equal to 300")
+      end
+
+      it '商品価格が10_000_000円以上では出品できない' do
+        @item.price = 77777777
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price must be less than or equal to 9999999")
+      end
+
+
+      it '商品価格が半角英数字混合では出品できない' do
+        @item.price = "776np77"
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price is not a number")
+      end
+
+
+      it '商品価格が半角英字のみでは出品できない' do
+        @item.price = "sfasscs"
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price is not a number")
+      end
+
+      it '商品価格が全角文字では出品できない' do
+        @item.price = "７７６７７７"
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price is not a number")
+      end
+
+     
+
+
+
       it 'imageが空だと登録できない' do
         @item.image = nil
         @item.valid?

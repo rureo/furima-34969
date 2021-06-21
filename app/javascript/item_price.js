@@ -5,14 +5,14 @@ window.addEventListener('load', () => {
   
   priceInput.addEventListener("input", () => {
     const inputValue = priceInput.value;
-    console.log(inputValue);
+   
   
   
   
   const addTaxPriceInput = document.getElementById("add-tax-price");
   
    addTaxPriceInput.innerHTML=(Math.floor(inputValue*0.1));
-   console.log(addTaxPriceInput);
+   
 
   
   

@@ -22,7 +22,7 @@ end
 
   private
   def item_params
-    params.require(:item).permit(:name, :description, :category_id, :status_id, :who_pay_shipping_charge_id ,:ship_where_from_id, :delivery_day_id,:image, :price, :user　,:image ).merge(user_id: current_user.id)
+    params.require(:item).permit(:name, :description, :category_id, :status_id, :who_pay_shipping_charge_id ,:ship_where_from_id, :delivery_day_id,:image, :price  ).merge(user_id: current_user.id)
   end
 
 
