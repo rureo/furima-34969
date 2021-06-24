@@ -1,5 +1,7 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit]
+  before_action :move_to_index, only: [:edit]
+
   def index
     @items=Item.all.order("created_at DESC")
   end
@@ -19,6 +21,8 @@ class ItemsController < ApplicationController
  end
 
 
+
+ 
 def update
 @item=Item.find(params[:id])
 if @item.update(item_params)
@@ -48,3 +52,12 @@ end
                                  :delivery_day_id, :image, :price).merge(user_id: current_user.id)
   end
 end
+
+
+def move_to_index
+  @item=Item.find(params[:id])
+  unless current_user.id == @item.user_id
+    redirect_to action: :index
+  end
+end
+
