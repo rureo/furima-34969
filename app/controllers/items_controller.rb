@@ -7,7 +7,7 @@ class ItemsController < ApplicationController
 
   def index
     @items=Item.all.order("created_at DESC")
-  end　
+  end
 
 
   def new
@@ -37,14 +37,12 @@ class ItemsController < ApplicationController
  
   def update
 
-  if @item.update(item_params)
-    redirect_to item_path
-
-  else
-    render :edit
-  end
-  end
-
+    if @item.update(item_params)
+      redirect_to item_path
+    else
+      render :edit
+    end
+ end
 
 
 
@@ -61,7 +59,7 @@ class ItemsController < ApplicationController
 
   def set_item
     @item = Item.find(params[:id])
-   end
+  end
 
 
   def item_params
@@ -75,6 +73,7 @@ class ItemsController < ApplicationController
  
     unless current_user.id == @item.user_id
     redirect_to action: :index
-    end
   end
-  end
+end
+
+end
