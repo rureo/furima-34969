@@ -23,9 +23,11 @@ private
 
 def order_params
 
-params.require(:OrderShippment).permit(:postal_code, :ship_where_from_id, :city, :house_number, :phone_number).merge(use_id: current_user.id, item_id: params[:item_id])
+params.require(:order_shippment).permit(:postal_code, :ship_where_from_id, :city, :house_number, :phone_number).merge(user_id: current_user.id, item_id: params[:item_id])
 
 end
 
 
 end
+
+

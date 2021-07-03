@@ -2,9 +2,9 @@ class Order < ApplicationRecord
 
 
 
-belongs_to: user
-belongss_to: items  
-has_one: shipppmet
+belongs_to :user
+belongs_to :item
+has_one :shipppmet
 
  
 
