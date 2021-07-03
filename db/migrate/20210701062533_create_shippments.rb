@@ -10,7 +10,7 @@ class CreateShippments < ActiveRecord::Migration[6.0]
   
       t.references :order,                         null: false, foreign_key: true
  
-
+      
  
 
 
