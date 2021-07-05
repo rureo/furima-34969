@@ -2,14 +2,21 @@ require 'rails_helper'
 
 RSpec.describe OrderShippment, type: :model do
   before do
-    @order_shippment = FactoryBot.build(:order_shippment)
+    @user = FactoryBot.create(:user)
+    @item = FactoryBot.create(:item)
+    @order_shippment = FactoryBot.build(:order_shippment, user_id: @user.id, item_id: @item.id)
+sleep(1)
+
   end
 
   describe '商品購入' do
     context '商品購入できるとき' do
-      it 'postal_code,ship_where_from_id,city,house_number,building_name,phone_number が存在すれば登録できる' do
+      it 'postal_code,ship_where_from_id,city,house_number,building_name,phone_number,price,token,user_id,item_idが存在すれば登録できる' do
         expect(@order_shippment).to be_valid
       end
+
+
+   
     end
 
 
@@ -61,11 +68,28 @@ RSpec.describe OrderShippment, type: :model do
         expect(@order_shippment.errors.full_messages).to include("House number can't be blank")
       end
 
-
-
-
     
-    end
+        it "tokenが空では登録できないこと" do
+          @order_shippment.token = nil
+          @order_shippment.valid?
+          expect(@order_shippment.errors.full_messages).to include("Token can't be blank")
+        end
+
+        it "user_idがないと登録できないこと" do
+          @order_shippment.user_id = nil
+          @order_shippment.valid?
+          expect(@order_shippment.errors.full_messages).to include("User can't be blank")
+        end
+
+
+        it "item_idがないと登録できないこと" do
+          @order_shippment.item_id = nil
+          @order_shippment.valid?
+          expect(@order_shippment.errors.full_messages).to include("Item can't be blank")
+        end
+
+      end
+ 
 
   end
 end

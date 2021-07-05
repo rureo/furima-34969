@@ -3,7 +3,7 @@ class OrderShippment
   include ActiveModel::Model
   
   
-  attr_accessor :postal_code, :ship_where_from_id, :city, :house_number, :building_name, :phone_number, :user_id, :item_id
+  attr_accessor :postal_code, :ship_where_from_id, :city, :house_number, :building_name, :phone_number, :user_id, :item_id, :token
 
 
 
@@ -14,6 +14,9 @@ class OrderShippment
     validates :city
     validates :house_number
     validates :phone_number,format: {with: /\A\d{10,11}\z/}
+    validates :user_id
+    validates :item_id
+    validates :token
   end
  
   with_options numericality: { other_than: 1 } do
