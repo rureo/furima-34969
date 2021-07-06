@@ -3,8 +3,7 @@ class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :move_to_index, only: [:edit, :update, :destroy]
   before_action :sold_to_index, only: [:edit, :update]
-
-
+  
 
   def index
     @items=Item.all.order("created_at DESC")
@@ -85,8 +84,9 @@ def sold_to_index
     redirect_to action: :index
   end
 
+
+
+
 end
-
-
 
 end

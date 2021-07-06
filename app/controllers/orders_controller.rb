@@ -1,12 +1,16 @@
 class OrdersController < ApplicationController
+  before_action :user_to_index, only: [:index]
+
+ 
   def index
+    
     @item= Item.find(params[:item_id])
     @order_shippment = OrderShippment.new
   end
   
   def create
-  
-@item=Item.find(params[:item_id])
+    @item= Item.find(params[:item_id])
+    
 @order_shippment = OrderShippment.new(order_params)
 if @order_shippment.valid?
   Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
@@ -23,11 +27,14 @@ else
   render:index
 end
 
-
-  end
+end
 
 
 private
+
+
+
+
 
 def order_params
 
@@ -35,6 +42,14 @@ params.require(:order_shippment).permit(:postal_code, :ship_where_from_id, :city
 
 end
 
+
+
+def user_to_index
+  @item= Item.find(params[:item_id])
+  if current_user.id == @item.user_id
+    redirect_to  root_path
+  end
+end
 
 end
 
