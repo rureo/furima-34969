@@ -1,6 +1,7 @@
 class OrdersController < ApplicationController
+  before_action :authenticate_user!, only: [:create, :index]
   before_action :user_to_index, only: [:index]
-
+  before_action :sold_to_index, only: [:edit, :update, :create, :index]
  
   def index
     
@@ -10,7 +11,7 @@ class OrdersController < ApplicationController
   
   def create
     @item= Item.find(params[:item_id])
-    
+
 @order_shippment = OrderShippment.new(order_params)
 if @order_shippment.valid?
   Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
@@ -46,9 +47,19 @@ end
 
 def user_to_index
   @item= Item.find(params[:item_id])
+ 
   if current_user.id == @item.user_id
     redirect_to  root_path
   end
+end
+
+
+
+def sold_to_index
+  if @item.order.present?
+    redirect_to  root_path
+  end
+
 end
 
 end
