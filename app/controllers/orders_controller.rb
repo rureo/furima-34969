@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!, only: [:create, :index]
   before_action :user_to_index, only: [:index]
-  before_action :sold_to_index, only: [:edit, :update, :create, :index]
+  before_action :sold_to_index, only: [:index]
  
   def index
     
