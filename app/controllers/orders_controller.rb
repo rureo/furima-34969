@@ -54,13 +54,14 @@ def user_to_index
 end
 
 
-
 def sold_to_index
+ 
   if @item.order.present?
     redirect_to  root_path
   end
 
 end
+
 
 end
 
