@@ -42,8 +42,8 @@ sleep(1)
         expect(@order_shippment.errors.full_messages).to include("Phone number can't be blank")
       end
 
-      it "phone_numberは11桁以内でないと登録できないこと" do
-        @order_shippment.phone_number = '677127799'
+      it "phone_numberは10-11桁でないと登録できないことと" do
+        @order_shippment.phone_number = '677-677-799'
         @order_shippment.valid?
         expect(@order_shippment.errors.full_messages).to include("Phone number is invalid")
       end

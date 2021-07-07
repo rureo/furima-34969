@@ -1,26 +1,21 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!, only: [:create, :index]
-  before_action :user_to_index, only: [:index]
   before_action :sold_to_index, only: [:index]
- 
+  before_action :set_item, only: [:index, :create, :user_to_index]
+  
+  
   def index
     
-    @item= Item.find(params[:item_id])
+   
     @order_shippment = OrderShippment.new
   end
   
   def create
-    @item= Item.find(params[:item_id])
-
-@order_shippment = OrderShippment.new(order_params)
-if @order_shippment.valid?
-  Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
-  Payjp::Charge.create(
-    amount: @item.price, 
-    card: order_params[:token],   
-    currency: 'jpy'                 
-  )
-
+  　
+   　@order_shippment = OrderShippment.new(order_params)
+　if @order_shippment.valid?
+  pay_item
+  
 
   @order_shippment.save
   redirect_to root_path
@@ -34,8 +29,19 @@ end
 private
 
 
+def pay_item
+  Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+  Payjp::Charge.create(
+    amount: @item.price, 
+    card: order_params[:token],   
+    currency: 'jpy'                 
+  )
 
 
+
+def set_item
+@item=Item.find(params[:id])
+end
 
 def order_params
 
@@ -45,22 +51,16 @@ end
 
 
 
-def user_to_index
-  @item= Item.find(params[:item_id])
- 
-  if current_user.id == @item.user_id
-    redirect_to  root_path
-  end
-end
-
-
 def sold_to_index
+
  
-  if @item.order.present?
+  if current_user.id == @item.user_id|| @item.order.present?
     redirect_to  root_path
   end
-
 end
+
+
+
 
 
 end
