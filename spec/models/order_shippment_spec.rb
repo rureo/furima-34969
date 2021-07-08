@@ -84,6 +84,8 @@ sleep(1)
 
 
 
+      
+
     
         it "tokenが空では登録できないこと" do
           @order_shippment.token = nil
