@@ -11,10 +11,16 @@ sleep(1)
 
   describe '商品購入' do
     context '商品購入できるとき' do
-      it 'postal_code,ship_where_from_id,city,house_number,building_name,phone_number,price,token,user_id,item_idが存在すれば登録できる' do
+      it 'postal_code,ship_where_from_id,city,house_number,phone_number,price,token,user_id,item_idが存在すれば登録できる' do
         expect(@order_shippment).to be_valid
       end
 
+
+
+      it 'building_nameが空の時も商品購入できる' do
+        @order_shippment.building_name = ''
+        expect(@order_shippment).to be_valid
+      end
 
    
     end
@@ -76,11 +82,6 @@ sleep(1)
         expect(@order_shippment.errors.full_messages).to include("House number can't be blank")
       end
 
-      it 'building_nameが空では商品購入できない' do
-        @order_shippment.building_name = ''
-        @order_shippment.valid?
-        expect(@order_shippment.errors.full_messages).to include("Building name can't be blank")
-      end
 
 
     
