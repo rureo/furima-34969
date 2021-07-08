@@ -97,7 +97,7 @@ sleep(1)
           @order_shippment.user_id = nil
           @order_shippment.valid?
           expect(@order_shippment.errors.full_messages).to include("User can't be blank")
-        end
+           end
 
 
         it "item_idがないと登録できないこと" do
