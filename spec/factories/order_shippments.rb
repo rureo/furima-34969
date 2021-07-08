@@ -7,6 +7,7 @@ city                 {'仙台市'}
 house_number          {'仙台区7-2-1'}
 phone_number          {'79627776777'}
 token                  {'test'}
+building_name                  {'仙台ビル'}
 
   end
 end

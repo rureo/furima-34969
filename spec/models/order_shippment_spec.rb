@@ -48,6 +48,14 @@ sleep(1)
         expect(@order_shippment.errors.full_messages).to include("Phone number is invalid")
       end
       
+      it "phone_numberは12桁でないと登録できないことと" do
+        @order_shippment.phone_number = '7677-7677-7799'
+        @order_shippment.valid?
+        expect(@order_shippment.errors.full_messages).to include("Phone number is invalid")
+      end
+
+
+
 
       it 'ship_where_from_idが空では商品購入できない' do
         @order_shippment.ship_where_from_id = 1
@@ -67,6 +75,13 @@ sleep(1)
         @order_shippment.valid?
         expect(@order_shippment.errors.full_messages).to include("House number can't be blank")
       end
+
+      it 'building_nameが空では商品購入できない' do
+        @order_shippment.building_name = ''
+        @order_shippment.valid?
+        expect(@order_shippment.errors.full_messages).to include("Building name can't be blank")
+      end
+
 
     
         it "tokenが空では登録できないこと" do
@@ -93,3 +108,4 @@ sleep(1)
 
   end
 end
+
