@@ -18,7 +18,7 @@
 ### Association
 
 - has_many :items
-- has_many :rops
+- has_many :orders
 
 
 ## items テーブル
@@ -37,7 +37,7 @@
 
 ### Association
 
-- has_one :rop
+- has_one :order
 - belongs_to :user
 
 
@@ -51,17 +51,17 @@
 | house_number          | string     | null: false                    |
 | building_name         | string                                      |
 | phone_number          | string     | null: false                    |
-| rop                   | references | null: false, foreign_key: true |
+| order                 | references | null: false, foreign_key: true |
 
 ### Association
 
 
-- belongs_to :rop
+- belongs_to :order
 
 
 
 
-## ropsテーブル
+## ordersテーブル
 
 | Column | Type        | Options                        |
 | ------ | ----------  | ------------------------------ |
