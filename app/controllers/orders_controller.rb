@@ -30,7 +30,7 @@ class OrdersController < ApplicationController
       card: order_params[:token],
       currency: 'jpy'
     )
- 　 end
+      end
 
   def set_item
     @item=Item.find(params[:item_id])
