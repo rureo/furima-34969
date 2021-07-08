@@ -25,4 +25,3 @@ end
 
 
 
-export BASIC_AUTH_USER='username'
